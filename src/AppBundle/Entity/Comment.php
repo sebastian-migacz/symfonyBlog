@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as AppFixtures;
 
 /**
  * Comment
@@ -15,9 +16,9 @@ class Comment
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @AppFixtures\Column(name="id", type="integer")
+     * @AppFixtures\Id
+     * @AppFixtures\GeneratedValue(strategy="AUTO")
      */
     private $id;
 

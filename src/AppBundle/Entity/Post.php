@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as AppFixtures;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,44 +16,44 @@ class Post
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @AppFixtures\Column(name="id", type="integer")
+     * @AppFixtures\Id
+     * @AppFixtures\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @AppFixtures\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lead", type="text")
+     * @AppFixtures\Column(name="lead", type="text")
      */
     private $lead;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text")
+     * @AppFixtures\Column(name="content", type="text")
      */
     private $content;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @AppFixtures\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var
      *
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     * @AppFixtures\OneToMany(targetEntity="Comment", mappedBy="post")
      */
     private $comments;
 

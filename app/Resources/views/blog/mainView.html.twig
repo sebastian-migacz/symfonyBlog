@@ -1,38 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>
-        {% block title %}
-            Welcome!
-        {% endblock %}
-    </title>
 
-    {% block stylesheets %}
-
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-</head>
-
-<body>
 
 {% block body %}
 
     <div align="justify" id="navbarArea">
-        penis
-        <?php
 
-        include 'blog/navbar.html.twig';
-        ?>
 
     </div>
 
-    <div align="justify" id="pageArea">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div>
 
+        {% for post in posts %}
+        <div align="justify" id="postArea">
+
+            <h2>{{ post.title }}</h2>
+
+            <p>{{ post.lead }}</p>
+
+        </div>
+        {% endfor %}
+
+    {{ knp_pagination_render(posts) }}
 {% endblock %}
-{% block javascripts %}
+
+{% block stylesheets %}
+    <style>
+        <link rel="stylesheet" herf="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    </style>
 {% endblock %}
-</body>
-</html>
