@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
+use AppBundle\Entity\Post;
+use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,4 +46,38 @@ class DefaultController extends Controller
             'posts' => $pagination
         ));
     }
+
+    /**
+     * @Route("/article/{id}", name="post_show")
+     */
+
+    public function showAction(\AppBundle\Entity\Post $post, Request $request)
+    {
+        $comment = new Comment();
+        $comment->setPost($post);
+
+        if($user = $this->getUser()) {
+            $comment->setUser($user);
+        }
+
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+
+        if($form->isValid(1)) {
+           $em=$this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            $this->addFlash("string", "succes!");
+            return $this->redirectToRoute('post_show', array('id' =>$post->getId()));
+        }
+
+        return $this->render('default/show.html.twig', array(
+            'post' => $post,
+            'form' => $form->createView()
+        ));
+    }
+
 }
+

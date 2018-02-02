@@ -40,7 +40,7 @@ class Comment
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="Comment")
+     * @ORM\ManyToOne(targetEntity="post", inversedBy="Comment")
      */
     private $post;
 
@@ -48,18 +48,8 @@ class Comment
      * @var
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="Comment")
-     * @ORM\JoinColumn(name = "user_id", nullable = true)
      */
     private $User;
-
-    public function __toString() {
-        return $this->content;
-    }
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime("now");
-    }
 
 
     /**
@@ -122,52 +112,5 @@ class Comment
     {
         return $this->createdAt;
     }
-
-    /**
-     * Set post
-     *
-     * @param \AppBundle\Entity\post $post
-     *
-     * @return Comment
-     */
-    public function setPost(\AppBundle\Entity\post $post = null)
-    {
-        $this->post = $post;
-
-        return $this;
-    }
-
-    /**
-     * Get post
-     *
-     * @return \AppBundle\Entity\post
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Comment
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->User = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->User;
-    }
 }
+
